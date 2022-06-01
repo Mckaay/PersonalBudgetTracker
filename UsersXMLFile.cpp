@@ -41,3 +41,25 @@ vector <User> UsersXMLFile::loadUserDataFromXMLFileToVector()
     }
     return users;
 }
+
+void UsersXMLFile::savePasswordChangeToXMLFile(string login,string newPassword)
+{
+    CMarkup xml;
+    xml.Load( getFileRoot() );
+    xml.FindElem();
+    xml.IntoElem();
+
+    while(xml.FindElem("USER"))
+    {
+        xml.IntoElem();
+        xml.FindElem("USERNAME");
+        if(xml.GetData() == login)
+        {
+            xml.FindElem("PASSWORD");
+            xml.SetData(newPassword);
+        }
+        xml.OutOfElem();
+    }
+    xml.Save( getFileRoot() );
+}
+

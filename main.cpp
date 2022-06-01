@@ -39,5 +39,9 @@ int main()
     system ("pause");
 
 
+    userManager.changePassword();
+
+
+
     return 0;
 }

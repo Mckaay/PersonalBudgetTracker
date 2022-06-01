@@ -32,6 +32,7 @@ public:
     void registration();
     void displayUsers();
     void loggingIn();
+    void changePassword();
 };
 
 

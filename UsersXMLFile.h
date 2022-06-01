@@ -27,6 +27,7 @@ public:
     };
     void saveUserToXMLFile(User user);
     vector <User> loadUserDataFromXMLFileToVector();
+    void savePasswordChangeToXMLFile(string login,string newPassword);
 
 };
 

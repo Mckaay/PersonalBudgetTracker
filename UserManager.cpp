@@ -100,3 +100,21 @@ int UserManager::getLoggedinUserId()
 {
     return this->loggedInUserId;
 }
+
+void UserManager::changePassword()
+{
+    string newPassword;
+
+    cout << "Podaj nowe haslo: ";
+    cin >> newPassword;
+
+    for(auto it1 = users.begin(); it1 != users.end(); it1++ )
+    {
+        if (it1 -> getId() == loggedInUserId)
+        {
+            it1 -> setPassword(newPassword);
+            cout << "Haslo zostalo zmienione pomyslnie." << endl;
+            usersXMLFile.savePasswordChangeToXMLFile(it1->getLogin(),newPassword);
+        }
+    }
+}
