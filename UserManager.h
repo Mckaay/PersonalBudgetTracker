@@ -33,6 +33,7 @@ public:
     void displayUsers();
     void loggingIn();
     void changePassword();
+    void logout();
 };
 
 

@@ -118,3 +118,8 @@ void UserManager::changePassword()
         }
     }
 }
+
+void UserManager::logout()
+{
+    loggedInUserId = 0;
+}

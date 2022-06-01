@@ -39,7 +39,9 @@ int main()
     system ("pause");
 
 
-    userManager.changePassword();
+    userManager.logout();
+
+    cout << userManager.getLoggedinUserId();
 
 
 
