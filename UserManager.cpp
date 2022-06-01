@@ -50,3 +50,53 @@ void UserManager::registration()
     usersXMLFile.saveUserToXMLFile(user);
     cout << "Pomyslnie zarejestrowano uzytkownika!" << endl;
 }
+
+int UserManager::checkIfCorrectPassword(string login, string password)
+{
+    for(auto it1 = users.begin() ; it1 != users.end(); it1++)
+    {
+        if(it1->getLogin() == login)
+        {
+            if(it1->getPassword() == password) return it1->getId();
+            else return 0;
+        }
+    }
+    return 0;
+}
+
+void UserManager::loggingIn()
+{
+    string login;
+    string password;
+
+    cout << "Podaj login: ";
+    cin >> login;
+
+    int number;
+
+    if(checkIfUserAlreadyExists(login))
+    {
+        for(int i = 0 ; i < 3 ; i++)
+        {
+            cout << "Podaj haslo: ";
+            cin >> password;
+            number = checkIfCorrectPassword(login,password);
+            if(number)
+            {
+                cout << "Pomyslnie zalogowano." << endl;
+                loggedInUserId = number;
+                return ;
+            }
+            else
+            {
+                cout << "Zle haslo. Pozostalo ci " << 2 - i << " proby. " << endl;
+            }
+        }
+    }
+    else cout << "Nie ma takiego uzytkownika!" << endl;
+}
+
+int UserManager::getLoggedinUserId()
+{
+    return this->loggedInUserId;
+}

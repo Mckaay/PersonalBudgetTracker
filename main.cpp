@@ -26,16 +26,17 @@ int main()
 
     userManager.displayUsers();
 
-    cout << endl << endl;
+    cout << endl;
+
+    cout << userManager.getLoggedinUserId();
 
     system("pause");
 
-    userManager.registration();
+    userManager.loggingIn();
 
+    cout << userManager.getLoggedinUserId();
 
-    userManager.displayUsers();
-
-
+    system ("pause");
 
 
     return 0;
