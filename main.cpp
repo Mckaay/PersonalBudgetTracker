@@ -2,8 +2,9 @@
 #include <vector>
 #include <string>
 #include <vector>
+#include <windows.h>
 
-#include "UsersXMLFile.h"
+#include "UserManager.h"
 
 
 using namespace std;
@@ -20,29 +21,20 @@ int main()
 {
     string fileRoot = "C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\Users.xml";
 
-    UsersXMLFile usersXMLFile(fileRoot);
 
-    vector <User> users = usersXMLFile.loadUserDataFromXMLFileToVector();
+    UserManager userManager(fileRoot);
 
-    for (auto it1 = users.begin(); it1 != users.end(); it1++)
-    {
-        displayUser(*it1);
-    }
+    userManager.displayUsers();
 
-    User user(6,"12345","12345");
+    cout << endl << endl;
 
-    usersXMLFile.saveUserToXMLFile(user);
+    system("pause");
 
-    users.clear();
+    userManager.registration();
 
-    users = usersXMLFile.loadUserDataFromXMLFileToVector();
 
-    cout << endl << endl << endl;
+    userManager.displayUsers();
 
-    for (auto it1 = users.begin(); it1 != users.end(); it1++)
-    {
-        displayUser(*it1);
-    }
 
 
 
