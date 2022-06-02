@@ -4,44 +4,37 @@
 #include <vector>
 #include <windows.h>
 
-#include "UserManager.h"
+#include "ExpensesXMLFile.h"
 
 
 using namespace std;
 
-void displayUser(User user)
+void displayExpenses(Expense expense)
 {
-    cout << user.getId() << endl;
-    cout << user.getLogin() << endl;
-    cout << user.getPassword() << endl;
+    cout << "DATE: " <<  expense.getDate() << endl;
+    cout << "INT DATE: " << expense.getIntDate() << endl;
+    cout << "USER_ID: " << expense.getUserId() << endl;
+    cout << "EXPENSE_ID: " <<expense.getId() << endl;
+    cout << "EXPENSE_DESCIRPTION: " << expense.getDescription() << endl;
+    cout << "AMOUNT: " <<expense.getAmount() << endl;
 }
 
 
 int main()
 {
-    string fileRoot = "C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\Users.xml";
+    ExpensesXMLFile expensesXMLFile("C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\expenses.xml");
 
+    vector <Expense> expenses = expensesXMLFile.loadExpensesFromXMLFileToVector(1);
 
-    UserManager userManager(fileRoot);
+    sort(expenses.begin(),expenses.end());
 
-    userManager.displayUsers();
+    for(auto it1 = expenses.begin(); it1 != expenses.end(); it1++)
+    {
+        displayExpenses(*it1);
+    }
 
-    cout << endl;
+    cout << expensesXMLFile.getLastExpenseId();
 
-    cout << userManager.getLoggedinUserId();
-
-    system("pause");
-
-    userManager.loggingIn();
-
-    cout << userManager.getLoggedinUserId();
-
-    system ("pause");
-
-
-    userManager.logout();
-
-    cout << userManager.getLoggedinUserId();
 
 
 

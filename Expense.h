@@ -4,19 +4,26 @@
 #include <iostream>
 #include <string>
 #include "Operation.h"
+#include "Time.h"
 
 
 class Expense:public Operation
 {
 
 public:
-    Expense(int date, float amount, int id, int userId, string description)
+    Expense(string date = "2000-01-01", float amount = 1, int id = 0, int userId = 0, string description = "default")
     {
-        this->date = date;
+        this->strDate = date;
+        this->date = Time::convertStringDateToIntDate(strDate);
         this->amount = amount;
         this->id = id;
         this->userId = userId;
         this->description = description;
+    }
+
+    bool operator < (const Expense& expense) const
+    {
+        return (date < expense.date);
     }
 
 };
