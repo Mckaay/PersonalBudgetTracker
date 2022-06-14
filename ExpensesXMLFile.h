@@ -4,9 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 #include "XMLFile.h"
 #include "Expense.h"
+#include "Time.h"
 
 class ExpensesXMLFile:public XMLFile
 {
