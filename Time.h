@@ -1,3 +1,6 @@
+#ifndef TIME_H
+#define TIME_H
+
 #include <iostream>
 #include <vector>
 #include <time.h>
@@ -9,6 +12,8 @@ using namespace std;
 
 class Time
 {
+    static const int MIN_DATE = 20000101;
+
 public:
     static string getCurrentDate();
     static bool checkIfValidDate(int date);
@@ -21,3 +26,5 @@ public:
     static int currentMaxDate();
 
 };
+
+#endif
