@@ -4,12 +4,12 @@
 #include <vector>
 #include <windows.h>
 
-#include "ExpensesXMLFile.h"
+#include "ExpensesManager.h"
 
 
 using namespace std;
 
-void displayExpenses(Expense expense)
+void displayExpense(Expense expense)
 {
     cout << "DATE: " <<  expense.getDate() << endl;
     cout << "INT DATE: " << expense.getIntDate() << endl;
@@ -22,19 +22,13 @@ void displayExpenses(Expense expense)
 
 int main()
 {
-    ExpensesXMLFile expensesXMLFile("C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\expenses.xml");
+    ExpensesManager expensesManager("C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\expenses.xml",1);
 
-    vector <Expense> expenses = expensesXMLFile.loadExpensesFromXMLFileToVector(1);
+    expensesManager.displayExpenses(20000101,20050101);
 
-    sort(expenses.begin(),expenses.end());
+    cout << endl << endl;
 
-    for(auto it1 = expenses.begin(); it1 != expenses.end(); it1++)
-    {
-        displayExpenses(*it1);
-    }
-
-    cout << expensesXMLFile.getLastExpenseId();
-
+    cout << expensesManager.getPeriodExpense();
 
 
 
