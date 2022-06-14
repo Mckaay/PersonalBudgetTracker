@@ -10,19 +10,22 @@ class Operation
 {
 protected:
     int date;
+    string strDate;
     float amount;
     int id;
     int userId;
     string description;
 
 public:
-    int getDate();
+    string getDate();
+    int getIntDate();
     float getAmount();
     int getId();
     int getUserId();
     string getDescription();
 
-    void setDate(int date);
+    void setDate(string date);
+    void setIntDate(int date);
     void setAmount(float amount);
     void setId(int id);
     void setUserId(int userId);

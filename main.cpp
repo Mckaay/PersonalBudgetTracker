@@ -4,44 +4,31 @@
 #include <vector>
 #include <windows.h>
 
-#include "UserManager.h"
+#include "ExpensesManager.h"
 
 
 using namespace std;
 
-void displayUser(User user)
+void displayExpense(Expense expense)
 {
-    cout << user.getId() << endl;
-    cout << user.getLogin() << endl;
-    cout << user.getPassword() << endl;
+    cout << "DATE: " <<  expense.getDate() << endl;
+    cout << "INT DATE: " << expense.getIntDate() << endl;
+    cout << "USER_ID: " << expense.getUserId() << endl;
+    cout << "EXPENSE_ID: " <<expense.getId() << endl;
+    cout << "EXPENSE_DESCIRPTION: " << expense.getDescription() << endl;
+    cout << "AMOUNT: " <<expense.getAmount() << endl;
 }
 
 
 int main()
 {
-    string fileRoot = "C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\Users.xml";
+    ExpensesManager expensesManager("C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\expenses.xml",1);
 
+    expensesManager.displayExpenses(20000101,20050101);
 
-    UserManager userManager(fileRoot);
+    cout << endl << endl;
 
-    userManager.displayUsers();
-
-    cout << endl;
-
-    cout << userManager.getLoggedinUserId();
-
-    system("pause");
-
-    userManager.loggingIn();
-
-    cout << userManager.getLoggedinUserId();
-
-    system ("pause");
-
-
-    userManager.logout();
-
-    cout << userManager.getLoggedinUserId();
+    cout << expensesManager.getPeriodExpense();
 
 
 

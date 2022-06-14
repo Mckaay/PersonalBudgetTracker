@@ -13,7 +13,7 @@ class UsersXMLFile:public XMLFile
 {
 
 public:
-    UsersXMLFile(string fileName): XMLFile(fileName)
+    UsersXMLFile(string fileRoot): XMLFile(fileRoot)
     {
         CMarkup xml;
         if(!xml.Load(getFileRoot()))
@@ -23,7 +23,6 @@ public:
             xml.OutOfElem();
             xml.Save(getFileRoot());
         }
-
     };
     void saveUserToXMLFile(User user);
     vector <User> loadUserDataFromXMLFileToVector();

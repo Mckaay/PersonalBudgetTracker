@@ -1,9 +1,15 @@
 #include "Operation.h"
 
-int Operation::getDate()
+string Operation::getDate()
+{
+    return this->strDate;
+}
+
+int Operation::getIntDate()
 {
     return this->date;
 }
+
 float Operation::getAmount()
 {
     return this->amount;
@@ -21,7 +27,12 @@ string Operation::getDescription()
     return this->description;
 }
 
-void Operation::setDate(int date)
+void Operation::setDate(string date)
+{
+    this->strDate = date;
+}
+
+void Operation::setIntDate(int date)
 {
     this->date = date;
 }
