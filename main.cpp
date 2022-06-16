@@ -5,21 +5,27 @@
 #include <windows.h>
 
 #include "IncomesManager.h"
+#include "PersonalMoneyTracker.h"
+
 
 
 using namespace std;
 
 int main()
 {
-    IncomesManager incomesManager("C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\incomes.xml",1);
+    PersonalMoneyTracker personalMoneyTracker("C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\Users.xml","C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\incomes.xml");
 
-    incomesManager.displayIncomes(20000101,20050101);
+    personalMoneyTracker.loggingIn();
+
+    personalMoneyTracker.displayPreviousMonthBalance();
+
+    personalMoneyTracker.logout();
 
     cout << endl << endl;
 
-    cout << incomesManager.getPeriodIncome();
+    personalMoneyTracker.loggingIn();
 
-
+    personalMoneyTracker.displayPreviousMonthBalance();
 
     return 0;
 }

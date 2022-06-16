@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "Markup.h"
+#include "Methods.h"
 
 using namespace std;
 

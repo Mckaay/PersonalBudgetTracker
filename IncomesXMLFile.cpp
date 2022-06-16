@@ -37,6 +37,7 @@ vector <Income> IncomesXMLFile::loadIncomesFromXMLFileToVector(int userId)
             income.setUserId(stoi(xml.GetData()));
             xml.FindElem("INCOME_ID");
             income.setId(stoi(xml.GetData()));
+            lastIncomeId = income.getId();
             xml.FindElem("DATE");
             income.setDate(xml.GetData());
             income.setIntDate(Time::convertStringDateToIntDate(xml.GetData()));
@@ -46,9 +47,6 @@ vector <Income> IncomesXMLFile::loadIncomesFromXMLFileToVector(int userId)
             income.setAmount(stoi(xml.GetData()));
             incomes.push_back(income);
         }
-        xml.FindElem("INCOME_ID");
-        lastIncomeId = stoi(xml.GetData());
-        cout << "TUTAJ: " << lastIncomeId << endl;
         xml.OutOfElem();
     }
     return incomes;

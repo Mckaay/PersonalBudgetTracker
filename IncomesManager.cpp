@@ -5,7 +5,7 @@ void IncomesManager::addIncome()
     Income income;
 
     income.setUserId(LOGGED_IN_USER_ID);
-    income.setId(incomesXMLFile.getLastIncomeId());
+    income.setId(incomesXMLFile.getLastIncomeId()+1);
 
     cout << "Wybierz date przychodu" << endl;
     cout << "1. Dzisiejsza data" << endl;
@@ -36,12 +36,12 @@ void IncomesManager::addIncome()
     }
 
     string description;
-    cout << endl << "Podaj opis przychodu: ";
-    cin >> description;
+    cout << endl << "Podaj opis przychodu: " << endl;
+    description = Methods::loadLine();
     income.setDescription(description);
 
     int amount;
-    cout << endl << "Podaj kwote: ";
+    cout << "Podaj kwote: ";
     cin >> amount;
     income.setAmount(amount);
 

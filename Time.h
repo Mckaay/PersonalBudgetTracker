@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <map>
 #include <string>
+#include "Methods.h"
 
 using namespace std;
 
@@ -24,6 +25,9 @@ public:
     static int getMonthFromDate(string date);
     static int getDayFromDate(string date);
     static int currentMaxDate();
+    static string convertIntDateToStringDate(int date);
+    static string getPreviousMonthStartDate();
+    static string getPreviousMonthEndDate();
 
 };
 

@@ -2,6 +2,7 @@
 #define INCOMESMANAGER_H
 
 #include "IncomesXMLFile.h"
+#include "Methods.h"
 
 class IncomesManager
 {
