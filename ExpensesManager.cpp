@@ -65,7 +65,7 @@ void ExpensesManager::displayExpense(Expense expense)
 
 void ExpensesManager::displayExpenses(int firstDate,int secondDate)
 {
-    system("cls");
+
     periodExpense = 0;
     for(auto it1 = expenses.begin(); it1 != expenses.end(); it1++)
     {
