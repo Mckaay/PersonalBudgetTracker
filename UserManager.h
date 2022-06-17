@@ -28,6 +28,7 @@ public:
         loggedInUserId = 0;
         users = usersXMLFile.loadUserDataFromXMLFileToVector();
     };
+    char loginMenu();
     int getLoggedinUserId();
     void registration();
     void displayUsers();
