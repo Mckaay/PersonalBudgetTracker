@@ -10,7 +10,9 @@ void UsersXMLFile::saveUserToXMLFile(User user)
     xml.IntoElem();
     xml.AddElem( "USER_ID", user.getId());
     xml.AddElem( "USERNAME", user.getLogin());
-    xml.AddElem( "PASSWORD", user.getPassword() );
+    xml.AddElem( "PASSWORD", user.getPassword());
+    xml.AddElem( "NAME", user.getName());
+    xml.AddElem( "SURNAME", user.getSurname());
     xml.OutOfElem();
 
     xml.Save( getFileRoot() );
@@ -35,6 +37,10 @@ vector <User> UsersXMLFile::loadUserDataFromXMLFileToVector()
         user.setLogin(xml.GetData());
         xml.FindElem("PASSWORD");
         user.setPassword(xml.GetData());
+        xml.FindElem("NAME");
+        user.setName(xml.GetData());
+        xml.FindElem("SURNAME");
+        user.setSurname(xml.GetData());
         xml.OutOfElem();
 
         users.push_back(user);

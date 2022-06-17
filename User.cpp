@@ -13,6 +13,16 @@ void User::setPassword(string password)
     this->password = password;
 }
 
+void User::setName(string name)
+{
+    this->name = name;
+}
+
+void User::setSurname(string surname)
+{
+    this->surname = surname;
+}
+
 int User::getId()
 {
     return this->ID;
@@ -24,4 +34,14 @@ string User::getLogin()
 string User::getPassword()
 {
     return this->password;
+}
+
+string User::getName()
+{
+    return this->name;
+}
+
+string User::getSurname()
+{
+    return this->surname;
 }

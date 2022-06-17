@@ -37,6 +37,15 @@ int Time::convertStringDateToIntDate(string date)
     return stoi(date);
 }
 
+string Time::convertIntDateToStringDate(int date)
+{
+    string strDate = Methods::intToString(date);
+    strDate.insert(4,"-");
+    strDate.insert(7,"-");
+    return strDate;
+
+}
+
 bool Time::isLeapYear(int year)
 {
     if(((year % 4 == 0) && (year % 100 !=0)) || (year % 400 == 0)) return true;
@@ -68,4 +77,21 @@ int Time::daysInAMonth(int monthNumber,bool leapYear)
     else return dayInAMonth.find(monthNumber)->second;
 }
 
+string Time::getPreviousMonthStartDate()
+{
+    string currentDate = getCurrentDate();
+    int intCurrentDate = convertStringDateToIntDate(currentDate);
+    if(getMonthFromDate(currentDate)!= 1) intCurrentDate = ((intCurrentDate - 100)/100)*100+1;
+    else intCurrentDate = ((intCurrentDate /10000)*10000+ 1200 + 1) - 10000;
+
+    return convertIntDateToStringDate(intCurrentDate);
+}
+
+string Time::getPreviousMonthEndDate()
+{
+    string previousMonth = getPreviousMonthStartDate();
+    int previousIntMonth = convertStringDateToIntDate(previousMonth);
+    previousIntMonth = (previousIntMonth/100)*100 + daysInAMonth(getMonthFromDate(previousMonth),isLeapYear(getYearFromDate(previousMonth)));
+    return convertIntDateToStringDate(previousIntMonth);
+}
 

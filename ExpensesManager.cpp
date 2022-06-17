@@ -5,11 +5,11 @@ void ExpensesManager::addExpense()
     Expense expense;
 
     expense.setUserId(LOGGED_IN_USER_ID);
-    expense.setId(expensesXMLFile.getLastExpenseId());
+    expense.setId(expensesXMLFile.getLastExpenseId()+1);
 
     cout << "Wybierz date wydatku" << endl;
     cout << "1. Dzisiejsza data" << endl;
-    cout << "2. Wczesniejsza data" << endl;
+    cout << "2. Inna data" << endl;
     char decision;
     cin >> decision;
 
@@ -21,7 +21,7 @@ void ExpensesManager::addExpense()
     else if(decision == '2')
     {
         string date;
-        cout << "Podaj  wczesniejsza date: ";
+        cout << "Podaj  inna date: ";
         cin >> date;
         bool valid = Time::checkIfValidDate(Time::convertStringDateToIntDate(date));
 
@@ -37,11 +37,11 @@ void ExpensesManager::addExpense()
 
     string description;
     cout << endl << "Podaj opis wydatku: ";
-    cin >> description;
+    description = Methods::loadLine();
     expense.setDescription(description);
 
     int amount;
-    cout << endl << "Podaj kwote: ";
+    cout << "Podaj kwote: ";
     cin >> amount;
     expense.setAmount(amount);
 
@@ -54,17 +54,18 @@ void ExpensesManager::addExpense()
 
 void ExpensesManager::displayExpense(Expense expense)
 {
-    cout << "DATE: " <<  expense.getDate() << endl;
-    cout << "INT DATE: " << expense.getIntDate() << endl;
-    cout << "USER_ID: " << expense.getUserId() << endl;
-    cout << "EXPENSE_ID: " <<expense.getId() << endl;
-    cout << "EXPENSE_DESCIRPTION: " << expense.getDescription() << endl;
-    cout << "AMOUNT: " <<expense.getAmount() << endl;
+     cout << "-------------WYDATEK---------------" << endl;
+    cout << "DATA:        " <<  expense.getDate() << endl;
+    cout << "ID:              " <<expense.getId() << endl;
+    cout << "OPIS:         " << expense.getDescription() << endl;
+    cout << "KWOTA:          " <<expense.getAmount() << endl;
+    cout << "------------------------------------" << endl;
+    cout << endl;
 }
-
 
 void ExpensesManager::displayExpenses(int firstDate,int secondDate)
 {
+
     periodExpense = 0;
     for(auto it1 = expenses.begin(); it1 != expenses.end(); it1++)
     {

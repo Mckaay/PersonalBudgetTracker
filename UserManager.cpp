@@ -31,6 +31,8 @@ void UserManager::registration()
 {
     string login;
     string password;
+    string name;
+    string surname;
 
     cout << "Podaj nazwe uzytkownika: ";
     cin >> login;
@@ -44,7 +46,13 @@ void UserManager::registration()
     cout << "Podaj haslo: ";
     cin >> password;
 
-    User user(getNewUserId(),login,password);
+    cout << "Podaj imie: ";
+    cin >> name;
+
+    cout << "Podaj nazwisko: ";
+    cin >> surname;
+
+    User user(getNewUserId(),login,password,name,surname);
     users.push_back(user);
 
     usersXMLFile.saveUserToXMLFile(user);
@@ -122,4 +130,21 @@ void UserManager::changePassword()
 void UserManager::logout()
 {
     loggedInUserId = 0;
+}
+
+char UserManager::loginMenu()
+{
+    char decision;
+
+    system("cls");
+    cout << "    >>> MENU  GLOWNE <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Rejestracja" << endl;
+    cout << "2. Logowanie" << endl;
+    cout << "9. Koniec programu" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Twoj wybor: ";
+
+    cin >> decision;
+    return decision;
 }
