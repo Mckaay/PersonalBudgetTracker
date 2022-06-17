@@ -36,6 +36,7 @@ vector <Expense> ExpensesXMLFile::loadExpensesFromXMLFileToVector(int userId)
             expense.setUserId(stoi(xml.GetData()));
             xml.FindElem("EXPENSE_ID");
             expense.setId(stoi(xml.GetData()));
+            lastExpenseId = expense.getId();
             xml.FindElem("DATE");
             expense.setDate(xml.GetData());
             expense.setIntDate(Time::convertStringDateToIntDate(xml.GetData()));
@@ -45,9 +46,6 @@ vector <Expense> ExpensesXMLFile::loadExpensesFromXMLFileToVector(int userId)
             expense.setAmount(stoi(xml.GetData()));
             expenses.push_back(expense);
         }
-        xml.FindElem("EXPENSE_ID");
-        lastExpenseId = stoi(xml.GetData());
-        cout << "TUTAJ: " << lastExpenseId << endl;
         xml.OutOfElem();
     }
     return expenses;

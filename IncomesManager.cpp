@@ -9,7 +9,7 @@ void IncomesManager::addIncome()
 
     cout << "Wybierz date przychodu" << endl;
     cout << "1. Dzisiejsza data" << endl;
-    cout << "2. Wczesniejsza data" << endl;
+    cout << "2. Inna data" << endl;
     char decision;
     cin >> decision;
 
@@ -21,7 +21,7 @@ void IncomesManager::addIncome()
     else if(decision == '2')
     {
         string date;
-        cout << "Podaj  wczesniejsza date: ";
+        cout << "Podaj  inna date: ";
         cin >> date;
         bool valid = Time::checkIfValidDate(Time::convertStringDateToIntDate(date));
 
@@ -54,17 +54,19 @@ void IncomesManager::addIncome()
 
 void IncomesManager::displayIncome(Income income)
 {
-    cout << "DATE: " <<  income.getDate() << endl;
-    cout << "INT DATE: " << income.getIntDate() << endl;
-    cout << "USER_ID: " << income.getUserId() << endl;
-    cout << "INCOME_ID: " <<income.getId() << endl;
-    cout << "INCOME_DESCIRPTION: " << income.getDescription() << endl;
-    cout << "AMOUNT: " <<income.getAmount() << endl;
+    cout << "-------------PRZYCHOD---------------" << endl;
+    cout << "DATA:        " <<  income.getDate() << endl;
+    cout << "ID:              " <<income.getId() << endl;
+    cout << "OPIS:         " << income.getDescription() << endl;
+    cout << "KWOTA:          " <<income.getAmount() << endl;
+    cout << "------------------------------------" << endl;
+    cout << endl;
 }
 
 
 void IncomesManager::displayIncomes(int firstDate,int secondDate)
 {
+    system("cls");
     periodIncome = 0;
     for(auto it1 = incomes.begin(); it1 != incomes.end(); it1++)
     {
