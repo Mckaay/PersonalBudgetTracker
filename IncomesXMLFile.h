@@ -30,6 +30,7 @@ public:
     void saveIncomeToXMLFile(Income income);
     vector <Income> loadIncomesFromXMLFileToVector(int userId);
     int getLastIncomeId();
+    void setLastIncomeId(int lastIncomeId);
 };
 
 #endif

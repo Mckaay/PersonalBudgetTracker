@@ -30,6 +30,7 @@ public:
     void saveExpenseToXMLFile(Expense expense);
     vector <Expense> loadExpensesFromXMLFileToVector(int userId);
     int getLastExpenseId();
+    void setLastExpenseId(int lastExpenseId);
 };
 
 

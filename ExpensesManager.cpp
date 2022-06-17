@@ -6,6 +6,7 @@ void ExpensesManager::addExpense()
 
     expense.setUserId(LOGGED_IN_USER_ID);
     expense.setId(expensesXMLFile.getLastExpenseId()+1);
+    expensesXMLFile.setLastExpenseId(expense.getId());
 
     cout << "Wybierz date wydatku" << endl;
     cout << "1. Dzisiejsza data" << endl;
@@ -65,7 +66,6 @@ void ExpensesManager::displayExpense(Expense expense)
 
 void ExpensesManager::displayExpenses(int firstDate,int secondDate)
 {
-
     periodExpense = 0;
     for(auto it1 = expenses.begin(); it1 != expenses.end(); it1++)
     {

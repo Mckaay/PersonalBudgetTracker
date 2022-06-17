@@ -55,3 +55,8 @@ int ExpensesXMLFile::getLastExpenseId()
 {
     return this->lastExpenseId;
 }
+
+void ExpensesXMLFile::setLastExpenseId(int lastExpenseId)
+{
+    this->lastExpenseId = lastExpenseId;
+}

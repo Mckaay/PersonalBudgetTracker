@@ -7,6 +7,8 @@ void IncomesManager::addIncome()
     income.setUserId(LOGGED_IN_USER_ID);
     income.setId(incomesXMLFile.getLastIncomeId()+1);
 
+    incomesXMLFile.setLastIncomeId(income.getId());
+
     cout << "Wybierz date przychodu" << endl;
     cout << "1. Dzisiejsza data" << endl;
     cout << "2. Inna data" << endl;
