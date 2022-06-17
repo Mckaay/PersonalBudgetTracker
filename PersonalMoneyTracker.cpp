@@ -1,5 +1,7 @@
 #include "PersonalMoneyTracker.h"
 
+
+
 int PersonalMoneyTracker::getLoggedInUserId()
 {
     return userManager.getLoggedinUserId();
@@ -50,9 +52,9 @@ void PersonalMoneyTracker::displayCurrentMonthBalance()
     incomesManager->displayIncomes((Time::convertStringDateToIntDate(Time::getCurrentDate())/100)*100+1,Time::currentMaxDate());
     expensesManager->displayExpenses((Time::convertStringDateToIntDate(Time::getCurrentDate())/100)*100+1,Time::currentMaxDate());
 
-    cout << "         SUMA PRZYCHODOW: " << incomesManager->getPeriodIncome() << endl;
-    cout << "         SUMA WYDATKOW:   " << expensesManager->getPeriodExpense() << endl;
-    cout << "           BILANS: " << incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
+    cout << "         SUMA PRZYCHODOW: " <<  incomesManager->getPeriodIncome() << endl;
+    cout << "         SUMA WYDATKOW:   " <<  expensesManager->getPeriodExpense() << endl;
+    cout << "           BILANS: " <<  incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
 }
 
 void PersonalMoneyTracker::displayPreviousMonthBalance()
@@ -60,9 +62,9 @@ void PersonalMoneyTracker::displayPreviousMonthBalance()
     incomesManager->displayIncomes(Time::convertStringDateToIntDate(Time::getPreviousMonthStartDate()),Time::convertStringDateToIntDate(Time::getPreviousMonthEndDate()));
     expensesManager->displayExpenses(Time::convertStringDateToIntDate(Time::getPreviousMonthStartDate()),Time::convertStringDateToIntDate(Time::getPreviousMonthEndDate()));
 
-    cout << "         SUMA PRZYCHODOW: " << incomesManager->getPeriodIncome() << endl;
-    cout << "         SUMA WYDATKOW:   " << expensesManager->getPeriodExpense() << endl;
-    cout << "           BILANS: " << incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
+    cout << "         SUMA PRZYCHODOW: "  << incomesManager->getPeriodIncome() << endl;
+    cout << "         SUMA WYDATKOW:   "  << expensesManager->getPeriodExpense() << endl;
+    cout << "           BILANS: "  << incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
 }
 
 void PersonalMoneyTracker::displayPeriodBalance()
@@ -75,25 +77,47 @@ void PersonalMoneyTracker::displayPeriodBalance()
     validFirstDate = Time::checkIfValidDate(Time::convertStringDateToIntDate(firstDate));
     while(!validFirstDate)
     {
-        cout << "Niestety podana data jest nieprawidlowa! Sprobuj ponownie: ";
+        cout << "Niestety podana data jest nieprawidlowa! Sprobuj ponownie!" << endl;
+        cout << "Data powinna zawierac sie w przedziale od 2000-01-01 do " << Time::convertIntDateToStringDate(Time::currentMaxDate()) << endl;
+        cout << "Podaj date ponownie: ";
         firstDate = Methods::loadLine();
         validFirstDate = Time::checkIfValidDate(Time::convertStringDateToIntDate(firstDate));
     }
     cout << "Podaj koncowa date: ";
     secondDate = Methods::loadLine();
     validSecondDate = Time::checkIfValidDate(Time::convertStringDateToIntDate(secondDate));
+
+    if(validSecondDate)
+    {
+        if(Time::convertStringDateToIntDate(firstDate) > Time::convertStringDateToIntDate(secondDate))
+        {
+            cout << "Blednie podane daty! Pierwsza jest pozniejsza niz druga!" << endl;
+            validSecondDate = false;
+        }
+    }
+
+
     while(!validSecondDate)
     {
-        cout << "Niestety podana data jest nieprawidlowa! Sprobuj ponownie: ";
+        cout << "Niestety podana data jest nieprawidlowa! Sprobuj ponownie!" << endl;
+        cout << "Data powinna zawierac sie w przedziale od " << firstDate << " do " << Time::convertIntDateToStringDate(Time::currentMaxDate()) << endl;
+        cout << "Podaj date ponownie: ";
         secondDate = Methods::loadLine();
         validSecondDate = Time::checkIfValidDate(Time::convertStringDateToIntDate(secondDate));
+
+        if(Time::convertStringDateToIntDate(firstDate) > Time::convertStringDateToIntDate(secondDate))
+        {
+            cout << "Blednie podane daty! Pierwsza jest pozniejsza niz druga!" << endl;
+            validSecondDate = false;
+        }
     }
+
     incomesManager->displayIncomes(Time::convertStringDateToIntDate(firstDate),Time::convertStringDateToIntDate(secondDate));
     expensesManager->displayExpenses(Time::convertStringDateToIntDate(firstDate),Time::convertStringDateToIntDate(secondDate));
 
-    cout << "         SUMA PRZYCHODOW: " << incomesManager->getPeriodIncome() << endl;
-    cout << "         SUMA WYDATKOW:   " << expensesManager->getPeriodExpense() << endl;
-    cout << "           BILANS: " << incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
+    cout << "         SUMA PRZYCHODOW: "  << incomesManager->getPeriodIncome() << endl;
+    cout << "         SUMA WYDATKOW:   "  << expensesManager->getPeriodExpense() << endl;
+    cout << "           BILANS: "  << incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
 }
 
 void PersonalMoneyTracker::displayMainMenu()

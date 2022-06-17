@@ -10,9 +10,12 @@
 
 using namespace std;
 
+
 int main()
 {
-    PersonalMoneyTracker personalMoneyTracker("C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\Users.xml","C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\incomes.xml","C:\\Users\\progg\\Desktop\\Budget\\PersonalBudgetTracker\\expenses.xml");
+    cout << fixed << setprecision(2);
+
+    PersonalMoneyTracker personalMoneyTracker("Users.xml","incomes.xml","expenses.xml");
 
     while(!personalMoneyTracker.getLoggedInUserId())
     {

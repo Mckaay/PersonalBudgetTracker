@@ -29,3 +29,24 @@ string Methods::intToString(int integer)
     return str;
 }
 
+double Methods::commaToDotSwap(string amount)
+{
+    size_t found = amount.find(",");
+    if(found != string::npos)
+    {
+        amount.replace(found,1,".");
+    }
+    return stod(amount);
+}
+
+string Methods::doubleToStringWithPrecision(double amount)
+{
+    std::ostringstream streamObj3;
+    streamObj3 << std::fixed;
+    streamObj3 << std::setprecision(2);
+    streamObj3 << amount;
+    std::string strObj3 = streamObj3.str();
+
+    return strObj3;
+}
+

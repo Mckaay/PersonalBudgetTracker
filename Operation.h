@@ -12,7 +12,7 @@ class Operation
 protected:
     int date;
     string strDate;
-    float amount;
+    double amount;
     int id;
     int userId;
     string description;
@@ -20,14 +20,14 @@ protected:
 public:
     string getDate();
     int getIntDate();
-    float getAmount();
+    double getAmount();
     int getId();
     int getUserId();
     string getDescription();
 
     void setDate(string date);
     void setIntDate(int date);
-    void setAmount(float amount);
+    void setAmount(double amount);
     void setId(int id);
     void setUserId(int userId);
     void setDescription(string description);

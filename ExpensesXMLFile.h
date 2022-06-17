@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <vector>
-#include <string>
+#include <string.h>
 #include <algorithm>
+#include <iomanip>
 
 #include "XMLFile.h"
 #include "Expense.h"
@@ -22,8 +23,6 @@ public:
         if(!xml.Load(getFileRoot()))
         {
             xml.AddElem( "EXPENSES-LIST");
-            xml.IntoElem();
-            xml.OutOfElem();
             xml.Save(getFileRoot());
         }
     };

@@ -10,7 +10,7 @@ int Operation::getIntDate()
     return this->date;
 }
 
-float Operation::getAmount()
+double Operation::getAmount()
 {
     return this->amount;
 }
@@ -37,7 +37,7 @@ void Operation::setIntDate(int date)
     this->date = date;
 }
 
-void Operation::setAmount(float amount)
+void Operation::setAmount(double amount)
 {
     this->amount = amount;
 }

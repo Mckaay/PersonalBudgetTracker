@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <iomanip>
 
 #include "Income.h"
 #include "Time.h"
@@ -22,8 +23,6 @@ public:
         if(!xml.Load(getFileRoot()))
         {
             xml.AddElem( "INCOMES-LIST");
-            xml.IntoElem();
-            xml.OutOfElem();
             xml.Save(getFileRoot());
         }
     };

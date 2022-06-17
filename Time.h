@@ -13,7 +13,6 @@ using namespace std;
 
 class Time
 {
-    static const int MIN_DATE = 20000101;
 
 public:
     static string getCurrentDate();

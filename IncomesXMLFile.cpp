@@ -8,11 +8,11 @@ void IncomesXMLFile::saveIncomeToXMLFile(Income income)
     xml.IntoElem();
     xml.AddElem("INCOME");
     xml.IntoElem();
-    xml.AddElem( "USER_ID", income.getUserId());
     xml.AddElem( "INCOME_ID", income.getId());
+    xml.AddElem( "USER_ID", income.getUserId());
     xml.AddElem( "DATE", income.getDate());
     xml.AddElem( "DESCRIPTION", income.getDescription());
-    xml.AddElem( "AMOUNT", income.getAmount());
+    xml.AddElem( "AMOUNT", Methods::doubleToStringWithPrecision(income.getAmount()));
     xml.OutOfElem();
 
     xml.Save(getFileRoot());
@@ -31,24 +31,24 @@ vector <Income> IncomesXMLFile::loadIncomesFromXMLFileToVector(int userId)
     {
         Income income;
         xml.IntoElem();
+        xml.FindElem("INCOME_ID");
+        income.setId(stoi(xml.GetData()));
+        lastIncomeId = income.getId();
         xml.FindElem("USER_ID");
-        if(stoi(xml.GetData()) == userId)
+        income.setUserId(stoi(xml.GetData()));
+        xml.FindElem("DATE");
+        income.setDate(xml.GetData());
+        income.setIntDate(Time::convertStringDateToIntDate(xml.GetData()));
+        xml.FindElem("DESCRIPTION");
+        income.setDescription(xml.GetData());
+        xml.FindElem("AMOUNT");
+        income.setAmount(stod(xml.GetData()));
+        xml.OutOfElem();
+
+        if(userId == income.getUserId())
         {
-            income.setUserId(stoi(xml.GetData()));
-            xml.FindElem("INCOME_ID");
-            income.setId(stoi(xml.GetData()));
-            lastIncomeId = income.getId();
-            system("pause");
-            xml.FindElem("DATE");
-            income.setDate(xml.GetData());
-            income.setIntDate(Time::convertStringDateToIntDate(xml.GetData()));
-            xml.FindElem("DESCRIPTION");
-            income.setDescription(xml.GetData());
-            xml.FindElem("AMOUNT");
-            income.setAmount(stoi(xml.GetData()));
             incomes.push_back(income);
         }
-        xml.OutOfElem();
     }
     return incomes;
 }

@@ -9,10 +9,11 @@ void IncomesManager::addIncome()
 
     incomesXMLFile.setLastIncomeId(income.getId());
 
-    cout << "Wybierz date przychodu" << endl;
+    cout << "Podaj date: " << endl;
     cout << "1. Dzisiejsza data" << endl;
     cout << "2. Inna data" << endl;
     char decision;
+    cout << "Twoj wybor: ";
     cin >> decision;
 
     if(decision == '1')
@@ -38,14 +39,15 @@ void IncomesManager::addIncome()
     }
 
     string description;
-    cout << endl << "Podaj opis przychodu: " << endl;
+    cout << endl << "Podaj opis przychodu: ";
     description = Methods::loadLine();
     income.setDescription(description);
 
-    int amount;
+    string amount;
     cout << "Podaj kwote: ";
     cin >> amount;
-    income.setAmount(amount);
+
+    income.setAmount(Methods::commaToDotSwap(amount));
 
     incomesXMLFile.saveIncomeToXMLFile(income);
     incomes.push_back(income);
@@ -56,12 +58,11 @@ void IncomesManager::addIncome()
 
 void IncomesManager::displayIncome(Income income)
 {
-    cout << "-------------PRZYCHOD---------------" << endl;
+    cout << endl;
     cout << "DATA:        " <<  income.getDate() << endl;
-    cout << "ID:              " <<income.getId() << endl;
     cout << "OPIS:         " << income.getDescription() << endl;
-    cout << "KWOTA:          " <<income.getAmount() << endl;
-    cout << "------------------------------------" << endl;
+    cout << "KWOTA:          " << income.getAmount() << endl;
+    cout << "-----------------------------------------" << endl;
     cout << endl;
 }
 
@@ -70,6 +71,7 @@ void IncomesManager::displayIncomes(int firstDate,int secondDate)
 {
     system("cls");
     periodIncome = 0;
+    cout << "-------------LISTA_PRZYCHODOW---------------" << endl;
     for(auto it1 = incomes.begin(); it1 != incomes.end(); it1++)
     {
         if(it1->getIntDate() >= firstDate && it1->getIntDate() <= secondDate)

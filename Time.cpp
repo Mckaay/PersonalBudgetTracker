@@ -15,8 +15,18 @@ bool Time::checkIfValidDate(int date)
 {
     const int MIN_DATE = 20000101;
     const int MAX_DATE = currentMaxDate();
-    if(date >= MIN_DATE && date <= MAX_DATE) return true;
-    else return false;
+
+    string strDate = convertIntDateToStringDate(date);
+
+    int year = getYearFromDate(strDate);
+    int month = getMonthFromDate(strDate);
+    int days = getDayFromDate(strDate);
+    bool isLeap = isLeapYear(year);
+
+    if(date < MIN_DATE || date > MAX_DATE) return false;
+    else if(days < 1 || days > daysInAMonth(month,isLeap)) return false;
+    else if(month < 1 || month > 12) return false;
+    else return true;
 }
 
 int Time::currentMaxDate()

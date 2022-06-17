@@ -2,6 +2,7 @@
 #define METHODS_H
 
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <fstream>
 #include <vector>
@@ -21,7 +22,8 @@ public:
     static bool isChar(char c);
     static void pauseProgram();
     static string intToString(int integer);
-
+    static double commaToDotSwap(string amount);
+    static string doubleToStringWithPrecision(double amount);
 
 };
 
