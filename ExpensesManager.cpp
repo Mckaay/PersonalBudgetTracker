@@ -34,7 +34,7 @@ void ExpensesManager::addExpense()
         while(!valid)
         {
             cout << "Podana data jest niepoprawna! Sprobuj ponownie" << endl;
-            cout << "Podaj inna date wydatku: ";
+            cout << "Podaj ponownie date: ";
             cin >> date;
             valid = Time::checkIfValidDate(Time::convertStringDateToIntDate(date));
         }

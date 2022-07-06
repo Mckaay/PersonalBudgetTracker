@@ -37,6 +37,7 @@ void IncomesManager::addIncome()
         while(!valid)
         {
             cout << "Podana data jest niepoprawna! Sprobuj ponownie" << endl;
+            cout << "Podaj ponownie date: ";
             cin >> date;
             valid = Time::checkIfValidDate(Time::convertStringDateToIntDate(date));
         }
