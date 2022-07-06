@@ -1,7 +1,5 @@
 #include "PersonalMoneyTracker.h"
 
-
-
 int PersonalMoneyTracker::getLoggedInUserId()
 {
     return userManager.getLoggedinUserId();
@@ -47,14 +45,19 @@ void PersonalMoneyTracker::addExpense()
     expensesManager->addExpense();
 }
 
+void PersonalMoneyTracker::displaySummary()
+{
+    cout << "         SUMA PRZYCHODOW: " <<  incomesManager->getPeriodIncome() << endl;
+    cout << "         SUMA WYDATKOW:   " <<  expensesManager->getPeriodExpense() << endl;
+    cout << "           BILANS: " <<  incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
+}
+
 void PersonalMoneyTracker::displayCurrentMonthBalance()
 {
     incomesManager->displayIncomes((Time::convertStringDateToIntDate(Time::getCurrentDate())/100)*100+1,Time::currentMaxDate());
     expensesManager->displayExpenses((Time::convertStringDateToIntDate(Time::getCurrentDate())/100)*100+1,Time::currentMaxDate());
 
-    cout << "         SUMA PRZYCHODOW: " <<  incomesManager->getPeriodIncome() << endl;
-    cout << "         SUMA WYDATKOW:   " <<  expensesManager->getPeriodExpense() << endl;
-    cout << "           BILANS: " <<  incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
+    displaySummary();
 }
 
 void PersonalMoneyTracker::displayPreviousMonthBalance()
@@ -62,9 +65,7 @@ void PersonalMoneyTracker::displayPreviousMonthBalance()
     incomesManager->displayIncomes(Time::convertStringDateToIntDate(Time::getPreviousMonthStartDate()),Time::convertStringDateToIntDate(Time::getPreviousMonthEndDate()));
     expensesManager->displayExpenses(Time::convertStringDateToIntDate(Time::getPreviousMonthStartDate()),Time::convertStringDateToIntDate(Time::getPreviousMonthEndDate()));
 
-    cout << "         SUMA PRZYCHODOW: "  << incomesManager->getPeriodIncome() << endl;
-    cout << "         SUMA WYDATKOW:   "  << expensesManager->getPeriodExpense() << endl;
-    cout << "           BILANS: "  << incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
+    displaySummary();
 }
 
 void PersonalMoneyTracker::displayPeriodBalance()
@@ -115,9 +116,7 @@ void PersonalMoneyTracker::displayPeriodBalance()
     incomesManager->displayIncomes(Time::convertStringDateToIntDate(firstDate),Time::convertStringDateToIntDate(secondDate));
     expensesManager->displayExpenses(Time::convertStringDateToIntDate(firstDate),Time::convertStringDateToIntDate(secondDate));
 
-    cout << "         SUMA PRZYCHODOW: "  << incomesManager->getPeriodIncome() << endl;
-    cout << "         SUMA WYDATKOW:   "  << expensesManager->getPeriodExpense() << endl;
-    cout << "           BILANS: "  << incomesManager->getPeriodIncome() - expensesManager->getPeriodExpense() << endl << endl;
+    displaySummary();
 }
 
 void PersonalMoneyTracker::displayMainMenu()

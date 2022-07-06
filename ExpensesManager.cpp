@@ -8,9 +8,13 @@ void ExpensesManager::addExpense()
     expense.setId(expensesXMLFile.getLastExpenseId()+1);
     expensesXMLFile.setLastExpenseId(expense.getId());
 
-    cout << "Podaj date: " << endl;
-    cout << "1. Dzisiejsza data" << endl;
-    cout << "2. Inna data" << endl;
+    cout << " >>>>>> DODAWANIE NOWEGO WYDATKU <<<<<<< " << endl << endl;
+    cout << "Wybierz z menu date wydatku" << endl << endl;
+
+    cout << "1. Dzisiejszy wydatek" << endl;
+    cout << "2. Wydatek z innego dnia" << endl;
+    cout << "3. Powrot do menu" << endl;
+
     char decision;
     cin >> decision;
 
@@ -22,20 +26,22 @@ void ExpensesManager::addExpense()
     else if(decision == '2')
     {
         string date;
-        cout << "Podaj  inna date: ";
+        cout << endl << " >>> AKCEPTOWANY FORMAT DATY PRZYKLAD: 2021-01-01 rrrr-mm-dd ! <<<" << endl << endl;
+        cout << "Podaj  date wydatku: ";
         cin >> date;
         bool valid = Time::checkIfValidDate(Time::convertStringDateToIntDate(date));
 
         while(!valid)
         {
             cout << "Podana data jest niepoprawna! Sprobuj ponownie" << endl;
-            cout << "Podaj inna date: ";
+            cout << "Podaj inna date wydatku: ";
             cin >> date;
             valid = Time::checkIfValidDate(Time::convertStringDateToIntDate(date));
         }
         expense.setDate(date);
         expense.setIntDate(Time::convertStringDateToIntDate(date));
     }
+    else return;
 
     string description;
     cout << endl << "Podaj opis wydatku: ";
@@ -43,7 +49,7 @@ void ExpensesManager::addExpense()
     expense.setDescription(description);
 
     string amount;
-    cout << "Podaj kwote: ";
+    cout << "Podaj kwote wydatku: ";
     cin >> amount;
     expense.setAmount(Methods::commaToDotSwap(amount));
 

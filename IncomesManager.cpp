@@ -9,9 +9,14 @@ void IncomesManager::addIncome()
 
     incomesXMLFile.setLastIncomeId(income.getId());
 
-    cout << "Podaj date: " << endl;
-    cout << "1. Dzisiejsza data" << endl;
-    cout << "2. Inna data" << endl;
+
+    cout << " >>>>>> DODAWANIE NOWEGO PRZYCHODU <<<<<<< " << endl << endl;
+    cout << "Wybierz z menu kiedy otrzymano przychod" << endl << endl;
+
+    cout << "1. Dzisiejszy przychod" << endl;
+    cout << "2. Przychod z innego dnia" << endl;
+    cout << "3. Powrot do menu" << endl;
+
     char decision;
     cout << "Twoj wybor: ";
     cin >> decision;
@@ -24,7 +29,8 @@ void IncomesManager::addIncome()
     else if(decision == '2')
     {
         string date;
-        cout << "Podaj  inna date: ";
+        cout << endl << " >>> AKCEPTOWANY FORMAT DATY PRZYKLAD: 2021-01-01 rrrr-mm-dd ! <<< " << endl << endl;
+        cout << "Podaj  date przychodu: ";
         cin >> date;
         bool valid = Time::checkIfValidDate(Time::convertStringDateToIntDate(date));
 
@@ -37,6 +43,7 @@ void IncomesManager::addIncome()
         income.setDate(date);
         income.setIntDate(Time::convertStringDateToIntDate(date));
     }
+    else return;
 
     string description;
     cout << endl << "Podaj opis przychodu: ";

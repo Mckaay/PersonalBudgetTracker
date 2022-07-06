@@ -6,10 +6,7 @@
 
 #include "PersonalMoneyTracker.h"
 
-
-
 using namespace std;
-
 
 int main()
 {
